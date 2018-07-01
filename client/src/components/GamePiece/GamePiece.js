@@ -3,10 +3,7 @@ import "./GamePiece.css";
 
 const GamePiece = props => (
   <div className="card">
-    <div onClick={() => 
-      /* props.countScore(props.score) */
-      props.trackChosen(props.id)
-      } className="img-container">
+    <div onClick={() => props.trackChosen(props.id)} className="img-container">
       <img alt={props.name} src={props.image} />
     </div>
   </div>

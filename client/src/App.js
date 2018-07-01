@@ -17,26 +17,29 @@ class App extends Component {
     chosen
   };
 
-  countScore = () => {
-    // Filter this.state.friends for friends with an id not equal to the id being removed
-    score++
-    // Set this.state.friends equal to the new friends array
-    this.setState({ score });
-  };
-
   trackChosen = id => {
     // if chosen array contains id game over
     if (chosen.includes(id)) {
       console.log('game over')
       // set score back to 0
+      score = 0
+      // empty chosen array
+      chosen = []
+      // show message that game is over and click any image to start over
       // rerender imagages randomly
+
+      this.setState({ score });
+      this.setState({ chosen });
     };
-    chosen.push(id)
-    // else add id to chosen array
+      // else add id to chosen array
+      chosen.push(id)
+      // add 1 to score
+      score++
+      // rerender imagages randomly
 
-    this.setState({ chosen });
+      this.setState({ score });
+      this.setState({ chosen });
   }
-
 
   // Map over this.state.friends and render a FriendCard component for each friend object
   render() {
@@ -47,7 +50,6 @@ class App extends Component {
           score={score}
         />
         {this.state.friends.map(friend => (
-          <div>
           <GamePiece
             countScore={this.countScore}
             trackChosen={this.trackChosen}
@@ -56,7 +58,6 @@ class App extends Component {
             name={friend.name}
             image={friend.image}
           />
-          </div>
         ))}
       </Wrapper>
     );
